@@ -15,6 +15,16 @@
                 <input name="word" [(ngModel)]="word" type="text" class="form-control w-100" id="word" aria-describedby="word" placeholder="Enter word here!">
                 <small id="wordHelp" class="form-text text-muted">this will be added to the words</small>
                 <button class="btn btn-success mt-2" type="submit">Add</button>
+
+                <div class="mt-2 alert alert-success alert-dismissible" *ngIf="message.length > 0">
+                  <button type="button" (click)="message=''" class="close" data-dismiss="alert">&times;</button>
+                  <strong>{{message}}</strong> 
+                </div> 
+                
+                <div class="mt-2 alert alert-danger alert-dismissible" *ngIf="errorMessage.length > 0">
+                  <button type="button" (click)="errorMessage=''" class="close" data-dismiss="alert">&times;</button>
+                  <strong>{{errorMessage}}</strong> 
+                </div> 
               </div>
             </form>
           </div>
@@ -23,7 +33,7 @@
             <div class="col-lg-3 col-md-6 col-8 mx-auto my-3" *ngFor="let word of wordModel.words; let i = index">
               <div class="alert alert-success text-center shadow rounded">
                 <div class="row my-3"> <div class="col-12 text-center">
-                  <input id="input-{{word}}" type="text" class="text-center w-100"  value="{{word}}">
+                  <input id="input-{{word}}" type="text" class="form-control text-center w-100"  value="{{word}}">
                   <small id="input-{{word}}" class="form-text text-muted font-weight-bold">{{word}}</small>
                 </div>
               </div>

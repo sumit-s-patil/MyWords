@@ -11,6 +11,8 @@ export class HomeComponent {
   public word: string = "";
   public wordModel:WordModel = <WordModel>{};
   public loading: boolean = true;
+  public message: string = "";
+  public errorMessage: string = "";
   constructor(@Inject('BASE_URL') baseUrln: string,
               private wordsSerive: WordsService) {
                 this.baseUrl = baseUrln;
@@ -24,8 +26,12 @@ export class HomeComponent {
   AddWord() {
     this.loading = true;
     this.wordsSerive.Add(this.baseUrl, this.word).subscribe((wordAdded) => {
-      if (wordAdded)
+      if (wordAdded) {
+        this.message = "Word added successfully...!";
         this.getWords();
+      }
+      else
+        this.errorMessage = "Word cannot be empty...!";
       this.word = "";
       this.loading = false;
     });
@@ -34,8 +40,13 @@ export class HomeComponent {
   Delete(word: string) {
     this.loading = true;
     this.wordsSerive.Delete(this.baseUrl, word).subscribe((wordDeleted) => {
-      if (wordDeleted)
+      if (wordDeleted) {
+        this.message = "Word deleted successfully...!";
         this.getWords();
+      }
+      else
+      this.errorMessage = "Not deleted...!";
+
       this.loading = false;
     });
   }
@@ -47,10 +58,16 @@ export class HomeComponent {
 
     if(word !== inputValue) {
       this.wordsSerive.Update(this.baseUrl, word, inputValue).subscribe(isUpdated => {
-        if(isUpdated)
+        if(isUpdated) {
+          this.message = "Word updated successfully...!";
           this.getWords();       
+        }
+        else
+          this.errorMessage = "Word cannot be empty...!";
       })
     }
+    else
+      this.errorMessage = "Change word to update...!";
 
     this.loading = false;
   }
