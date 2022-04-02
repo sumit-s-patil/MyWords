@@ -1,0 +1,46 @@
+<div class="row mt-4">
+  <div class="col-12">
+   
+
+    <div class="row">
+      <div class="col-12 card">
+        <div class="card-header">
+          <h1>Words!</h1>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <form class="col-6 col-md-4 mx-auto" (ngSubmit)="AddWord()">
+              <div class="form-group">
+                <label for="word">Word</label>
+                <input name="word" [(ngModel)]="word" type="text" class="form-control" id="word" aria-describedby="word" placeholder="Enter word here!">
+                <small id="wordHelp" class="form-text text-muted">this will be added to the words</small>
+                <button class="btn btn-success mt-2" type="submit">Add</button>
+              </div>
+            </form>
+          </div>
+          <form name="updateWord" (ngSubmit)="Update($event)">
+          <div class="row" *ngIf="!loading && wordModel.words.length > 0">
+            <div class="col-lg-3 col-md-6 col-8 mx-auto" *ngFor="let word of wordModel.words; let i = index">
+              <div class="alert alert-success text-center">
+                <div class="row my-3"> <div class="col-12 mx-auto">
+                  <input id="input-{{word}}" type="text" class="text-center"  value="{{word}}">
+                  <small id="input-{{word}}" class="form-text text-muted">{{word}}</small>
+                </div>
+              </div>
+                <button id="{{word}}" class="btn btn-primary text-righ mx-2" type="submit" >update</button>
+                <button class="btn btn-danger text-righ mx-2" (click)="Delete(word)">delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="alert alert-danger col-md-4 col-6 mx-auto text-center" *ngIf="wordModel.words.length == 0"><span class="">No words present, add some...!</span></div>
+          <div class="col-8 mx-auto" *ngIf="loading">
+            <img class="img img-fluid" src="../../assets/Loader.jpg" />
+          </div>
+         </form>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
