@@ -20,14 +20,14 @@
           </div>
           <form name="updateWord" (ngSubmit)="Update($event)">
           <div class="row" *ngIf="!loading && wordModel.words.length > 0">
-            <div class="col-lg-3 col-md-6 col-8 mx-auto" *ngFor="let word of wordModel.words; let i = index">
-              <div class="alert alert-success text-center">
+            <div class="col-lg-3 col-md-6 col-8 mx-auto my-3" *ngFor="let word of wordModel.words; let i = index">
+              <div class="alert alert-success text-center shadow rounded">
                 <div class="row my-3"> <div class="col-12 mx-auto">
                   <input id="input-{{word}}" type="text" class="text-center"  value="{{word}}">
-                  <small id="input-{{word}}" class="form-text text-muted">{{word}}</small>
+                  <small id="input-{{word}}" class="form-text text-muted font-weight-bold">{{word}}</small>
                 </div>
               </div>
-                <button id="{{word}}" class="btn btn-primary text-righ mx-2" type="submit" >update</button>
+                <button id="{{word}}" class="btn btn-warning text-righ mx-2" type="submit" >update</button>
                 <button class="btn btn-danger text-righ mx-2" (click)="Delete(word)">delete</button>
               </div>
             </div>
