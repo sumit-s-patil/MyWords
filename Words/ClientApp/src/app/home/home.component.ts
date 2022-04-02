@@ -51,8 +51,8 @@ export class HomeComponent {
           this.getWords();       
       })
     }
-    else
-      this.loading = false;
+
+    this.loading = false;
   }
 
   getWords() {
